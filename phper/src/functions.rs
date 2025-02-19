@@ -18,6 +18,7 @@ use crate::{
     modules::global_module,
     objects::{StateObj, ZObj, ZObject},
     strings::{ZStr, ZString},
+    sys,
     sys::*,
     types::TypeInfo,
     utils::ensure_end_with_zero,
@@ -439,6 +440,11 @@ impl ZFunc {
                 Some(ClassEntry::from_ptr(self.inner.common.scope))
             }
         }
+    }
+
+    /// Is the function internal?
+    pub fn is_internal(&self) -> bool {
+        unsafe {(*self.as_ptr()).type_ as u32 == sys::ZEND_INTERNAL_FUNCTION }
     }
 
     #[allow(clippy::useless_conversion)]
