@@ -348,6 +348,10 @@ zval *phper_get_this(zend_execute_data *execute_data) {
     return getThis();
 }
 
+zval *phper_get_return_value(zend_execute_data *execute_data) {
+    return execute_data->return_value;
+}
+
 size_t phper_zend_object_properties_size(zend_class_entry *ce) {
     return zend_object_properties_size(ce);
 }

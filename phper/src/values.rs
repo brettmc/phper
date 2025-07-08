@@ -130,6 +130,14 @@ impl ExecuteData {
         unsafe { ZFunc::from_mut_ptr(self.inner.func) }
     }
 
+    /// Gets associated return value.
+    pub fn get_return_value(&mut self) -> Option<&mut ZVal> {
+        unsafe {
+            let val = phper_get_return_value(&mut self.inner);
+            ZVal::try_from_mut_ptr(val)
+        }
+    }
+
     /// Gets associated `$this` object if exists.
     pub fn get_this(&mut self) -> Option<&ZObj> {
         unsafe {
