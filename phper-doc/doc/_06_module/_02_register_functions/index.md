@@ -93,6 +93,9 @@ modifiers that change that:
 | [`with_type_hint`](phper::functions::Argument::with_type_hint) / [`allow_null`](phper::functions::Argument::allow_null) | the declared type, and whether it accepts `null` |
 | [`by_ref`](phper::functions::Argument::by_ref) | pass by reference rather than by value |
 
+An argument type the running PHP does not have is declared untyped: `mixed`
+before PHP 8.0, and `iterable` on PHP 7.0.
+
 Here we define a function that accepts a nullable class (in this case, an
 interface), a string with a default value, and an optional bool:
 
