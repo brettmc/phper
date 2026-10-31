@@ -90,6 +90,9 @@ foreach ($argumentTypehintProvider as $input) {
     echo "PASS" . PHP_EOL;
 }
 
+$cls->testIterable([1]);
+$cls->testIterable(new ArrayIterator([1]));
+
 // return typehints
 $returnTypehintProvider = [
     // <method>, <expected typehint>, <is nullable>, <(optional)min php version>

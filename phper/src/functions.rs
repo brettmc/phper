@@ -303,6 +303,11 @@ impl FunctionEntry {
                             }
                         }
                     }
+                    ArgumentTypeHint::Iterable
+                        if PHP_MAJOR_VERSION == 7 && PHP_MINOR_VERSION == 0 =>
+                    {
+                        None
+                    }
                     ArgumentTypeHint::ClassEntry(class_name) => {
                         let c_class_name =
                             CString::new(class_name.clone()).expect("CString::new failed");
