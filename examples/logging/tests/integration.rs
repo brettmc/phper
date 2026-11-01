@@ -72,6 +72,18 @@ fn test_php_warning() {
 }
 
 #[test]
+fn test_php_warning_format() {
+    test_php_script_with_condition(
+        &*DYLIB_PATH,
+        TESTS_PHP_DIR.join("test_php_warning_format.php"),
+        |output| {
+            let stdout = str::from_utf8(&output.stdout).unwrap();
+            stdout.contains("Something warning: 100%% done %s%s%s%s%s%s") && output.status.success()
+        },
+    );
+}
+
+#[test]
 fn test_php_error() {
     test_php_script_with_condition(
         &*DYLIB_PATH,
