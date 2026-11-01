@@ -239,6 +239,12 @@ void phper_zend_string_release(zend_string *s) {
     return zend_string_release(s);
 }
 
+// php_error_docref is a macro for php_error_docref0 before 7.4, so bindgen
+// only sees it from 7.4.
+void phper_php_error_docref(int type, const char *message) {
+    php_error_docref(NULL, type, "%s", message);
+}
+
 #if PHP_VERSION_ID < 80000
 static zend_string *phper_zend_string_concat3(const char *str1, size_t str1_len,
                                               const char *str2, size_t str2_len,

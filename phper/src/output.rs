@@ -11,7 +11,6 @@
 //! Logs and echo facilities.
 
 use crate::{sys::*, utils::ensure_end_with_zero};
-use std::ptr::null;
 
 /// Log level.
 #[repr(u32)]
@@ -31,12 +30,7 @@ pub enum LogLevel {
 pub fn log(level: LogLevel, message: impl Into<String>) {
     let message = ensure_end_with_zero(message);
     unsafe {
-        php_error_docref1(
-            null(),
-            c"".as_ptr().cast(),
-            level as i32,
-            message.as_ptr().cast(),
-        );
+        phper_php_error_docref(level as i32, message.as_ptr().cast());
     }
 }
 
